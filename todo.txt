@@ -1,3 +1,7 @@
 # todo
 
+- (maybe) fade bullets more quickly
+
+## done
+
 - fade screen instead of set to black each frame
