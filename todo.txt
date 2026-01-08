@@ -1,0 +1,3 @@
+# todo
+
+- fade screen instead of set to black each frame
