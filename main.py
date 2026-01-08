@@ -15,6 +15,10 @@ def main():
     pygame.init()
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    
+    screen.fill("black")
+
+
     clock = pygame.time.Clock()
     dt = 0.0
     updatable = pygame.sprite.Group()
@@ -31,6 +35,10 @@ def main():
     AsteroidField()
     # TODO what would happen if we made two asteroid fields?
     # AsteroidField()
+    fade_surface = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+    fade_surface.fill("black")
+    fade_surface.set_alpha(255)
+
 
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
@@ -58,8 +66,15 @@ def main():
 
 
 
+                
 
-        screen.fill("black")
+        pygame.Surface.blit(fade_surface, screen, (0, 0))
+        # screen.fill("black")
+
+        # note: this somehow broke the above blit.
+        # pxarray = pygame.PixelArray(screen)
+        # print(pxarray.shape)
+
         for a_drawable in drawable:
             a_drawable.draw(screen)
         pygame.display.flip()
