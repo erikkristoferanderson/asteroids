@@ -33,10 +33,9 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
-        # player.update(dt)
         updatable.update(dt)
-        for one_drawable in drawable:
-            one_drawable.draw(screen)
+        for two_drawable in drawable:
+            two_drawable.draw(screen)
 
         screen.fill("black")
         player.draw(screen)
