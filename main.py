@@ -37,7 +37,7 @@ def main():
     # AsteroidField()
     fade_surface = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     fade_surface.fill("black")
-    fade_surface.set_alpha(255)
+    fade_surface.set_alpha(10)
 
 
 
