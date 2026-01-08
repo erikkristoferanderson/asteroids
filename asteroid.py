@@ -28,9 +28,7 @@ class Asteroid(CircleShape):
         first_ast = Asteroid(self.position.x, self.position.y, new_radius)
         first_ast.velocity = first_vel * 1.2  # 1.2 is the magic number
         second_ast = Asteroid(self.position.x, self.position.y, new_radius)
-        second_ast.velocity = second_vel * 1.2 
+        second_ast.velocity = second_vel * 1.2
 
- 
-    
     def update(self, dt):
         self.position += self.velocity * dt

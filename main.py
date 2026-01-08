@@ -7,6 +7,7 @@ from logger import log_state, log_event
 from player import Player
 from shot import Shot
 
+
 def main():
     version = pygame.version.ver
     print(f"Starting Asteroids with pygame version: {version}")
@@ -22,7 +23,6 @@ def main():
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
 
-
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable,)
@@ -31,7 +31,6 @@ def main():
     AsteroidField()
     # TODO what would happen if we made two asteroid fields?
     # AsteroidField()
-
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
@@ -56,16 +55,12 @@ def main():
                     shot.kill()
                     asteroid.split()
 
-
-
-
         screen.fill("black")
         for a_drawable in drawable:
             a_drawable.draw(screen)
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
-
 
 
 if __name__ == "__main__":
