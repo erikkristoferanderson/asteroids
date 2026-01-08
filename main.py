@@ -1,11 +1,11 @@
-import constants # TODO delte me 
-
 import pygame
+import sys
 from asteroid import Asteroid
 from asteroidfeild import AsteroidField
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
-from logger import log_state
+from logger import log_state, log_event
 from player import Player
+from shot import Shot
 
 def main():
     version = pygame.version.ver
@@ -20,12 +20,18 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
+
 
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable,)
+    Shot.containers = (shots, drawable, updatable)
 
-    asteroid_field = AsteroidField()
+    AsteroidField()
+    # TODO what would happen if we made two asteroid fields?
+    # AsteroidField()
+
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
@@ -34,19 +40,22 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        
-        screen.fill("black")
-        player.draw(screen)
+
         updatable.update(dt)
-        for two_drawable in drawable:
-            two_drawable.draw(screen)
 
-        thingy = Asteroid(100, 100, 20)
-        pygame.draw.circle(screen, "white", thingy.position, thingy.radius, constants.LINE_WIDTH)
-        pygame.draw.circle(screen, "white", thingy.position, thingy.radius, 2)
-        pygame.draw.circle(screen, "white", pygame.Vector2((25, 48)), thingy.radius, 2)
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
 
+
+
+        screen.fill("black")
+        for a_drawable in drawable:
+            a_drawable.draw(screen)
         pygame.display.flip()
+
         dt = clock.tick(60) / 1000
 
 
