@@ -68,7 +68,7 @@ def main():
 
                 
 
-        pygame.Surface.blit(fade_surface, screen, (0, 0))
+        screen.blit(fade_surface, (0, 0))
         # screen.fill("black")
 
         # note: this somehow broke the above blit.
