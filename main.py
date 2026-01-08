@@ -35,19 +35,17 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
+        screen.fill("black")
+        player.draw(screen)
         updatable.update(dt)
         for two_drawable in drawable:
             two_drawable.draw(screen)
 
         thingy = Asteroid(100, 100, 20)
-        foo = thingy.position
         pygame.draw.circle(screen, "white", thingy.position, thingy.radius, constants.LINE_WIDTH)
         pygame.draw.circle(screen, "white", thingy.position, thingy.radius, 2)
         pygame.draw.circle(screen, "white", pygame.Vector2((25, 48)), thingy.radius, 2)
 
-        screen.fill("black")
-        player.draw(screen)
-        # TODO put draw methods HERE
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
